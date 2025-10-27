@@ -1,0 +1,12 @@
+runtime: nodejs20 # Specify the Node.js version here
+env: standard
+instance_class: F1 # Choose the instance class based on your needs
+
+automatic_scaling:
+  target_cpu_utilization: 0.6
+  min_instances: 1
+  max_instances: 5
+
+handlers:
+  - url: /.*
+    script: auto

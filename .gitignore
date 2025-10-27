@@ -1,0 +1,5 @@
+# .gitignore content
+.env
+.gcloudignore
+
+node_modules/
