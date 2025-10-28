@@ -60,6 +60,24 @@ const formSubmissionFilePath = path.join(
 const formSubmissionSource = fs.readFileSync(formSubmissionFilePath, "utf8");
 const formSubmissionTemplate = handlebars.compile(formSubmissionSource);
 
+// Load and compile the after demo template
+const afterDemoFilePath = path.join(__dirname, "after-demo-template.html");
+const afterDemoSource = fs.readFileSync(afterDemoFilePath, "utf8");
+const afterDemoTemplate = handlebars.compile(afterDemoSource);
+
+// Load and compile the after demo confirmation template
+const afterDemoConfirmationFilePath = path.join(
+  __dirname,
+  "after-demo-confirmation-template.html"
+);
+const afterDemoConfirmationSource = fs.readFileSync(
+  afterDemoConfirmationFilePath,
+  "utf8"
+);
+const afterDemoConfirmationTemplate = handlebars.compile(
+  afterDemoConfirmationSource
+);
+
 /**
  * @swagger
  * /send-email:
@@ -233,51 +251,71 @@ app.post("/after-demo-form", async (req, res) => {
       timeZoneName: "short",
     });
 
-    // Prepare email content with form data
-    const htmlToSend = formSubmissionTemplate({
+    // Determine difficulty level and color class
+    let difficultyClass = "";
+    let difficultyLabel = "";
+
+    if (difficulty <= 3) {
+      difficultyClass = "difficulty-easy";
+      difficultyLabel = "Very Easy";
+    } else if (difficulty <= 5) {
+      difficultyClass = "difficulty-easy";
+      difficultyLabel = "Easy";
+    } else if (difficulty <= 7) {
+      difficultyClass = "difficulty-medium";
+      difficultyLabel = "Moderate";
+    } else if (difficulty <= 8) {
+      difficultyClass = "difficulty-medium";
+      difficultyLabel = "Challenging";
+    } else {
+      difficultyClass = "difficulty-hard";
+      difficultyLabel = "Very Difficult";
+    }
+
+    // Prepare email content with form data using the after-demo template
+    const htmlToSend = afterDemoTemplate({
       name,
       email,
       difficulty,
+      difficulty_class: difficultyClass,
+      difficulty_label: difficultyLabel,
       feedback,
       submission_date: submissionDate,
     });
 
     const transporter = await createTransporter();
     const mailOptions = {
-      from: '"Train App Form" <info@trainapp.org>',
+      from: '"Train App Feedback" <info@trainapp.org>',
       to: "trainapp9@gmail.com", // Send to the specified email
-      subject: `New After Demo Form Submission from ${name}`,
+      subject: `Demo Feedback from ${name}`,
       html: htmlToSend,
       replyTo: email, // Set reply-to as the submitter's email
     };
 
     const info = await transporter.sendMail(mailOptions);
-    console.log("After demo form submission email sent: " + info.response);
+    console.log("After demo feedback email sent: " + info.response);
 
-    // Also send a confirmation email to the submitter
+    // Send a confirmation email to the submitter using the after-demo confirmation template
+    const confirmationHtml = afterDemoConfirmationTemplate({
+      name,
+      email,
+    });
+
     const confirmationMailOptions = {
       from: '"Train App" <info@trainapp.org>',
       to: email,
-      subject: "Thank you for your interest in Train App",
-      html: template({}), // Using the existing welcome template
+      subject: "Thank you for your feedback!",
+      html: confirmationHtml,
     };
 
     await transporter.sendMail(confirmationMailOptions);
 
-    res
-      .status(200)
-      .json({
-        message:
-          "After demo form submission received and processed successfully",
-      });
+    res.status(200).json({
+      message: "After demo feedback received and processed successfully",
+    });
   } catch (error) {
-    console.error(
-      "Error processing after demo form submission:",
-      error.message
-    );
-    res
-      .status(500)
-      .json({ error: "Error processing after demo form submission" });
+    console.error("Error processing after demo feedback:", error.message);
+    res.status(500).json({ error: "Error processing after demo feedback" });
   }
 });
 

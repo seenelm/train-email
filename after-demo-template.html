@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>After Demo Feedback</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        height: 100%;
+      }
+      table {
+        height: 100%;
+        min-height: 100vh;
+        background-color: #f7f7f7;
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      .email-container {
+        background-color: #ffffff;
+        margin: 0 auto;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+        border-radius: 8px;
+      }
+      .email-logo {
+        padding: 30px 20px 10px;
+      }
+      .email-content {
+        padding: 20px;
+        text-align: center;
+      }
+      .email-content h1 {
+        color: #1a1a1a;
+        margin: 10px 0 20px;
+        font-size: 28px;
+        font-weight: 700;
+      }
+      .email-content p {
+        color: #666;
+        line-height: 1.6;
+        font-size: 15px;
+        margin: 10px 0;
+      }
+      .feedback-section {
+        background-color: #f9fafb;
+        border-radius: 8px;
+        padding: 25px;
+        margin: 20px auto;
+        max-width: 500px;
+        text-align: left;
+      }
+      .difficulty-rating {
+        margin: 20px 0;
+        text-align: center;
+      }
+      .difficulty-label {
+        font-size: 14px;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        display: block;
+      }
+      .difficulty-score {
+        font-size: 48px;
+        font-weight: 700;
+        color: #646cff;
+        margin: 10px 0;
+        display: block;
+      }
+      .difficulty-scale {
+        font-size: 13px;
+        color: #999;
+        margin-top: 5px;
+      }
+      .difficulty-context {
+        display: inline-block;
+        background-color: #e8eaff;
+        color: #646cff;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-top: 10px;
+      }
+      .feedback-label {
+        font-size: 14px;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+        margin: 25px 0 12px;
+        display: block;
+      }
+      .feedback-text {
+        background-color: #ffffff;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 16px;
+        color: #1a1a1a;
+        line-height: 1.7;
+        font-size: 15px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      .user-info {
+        width: 100%;
+        margin: 20px 0;
+        text-align: left;
+      }
+      .user-info-row {
+        padding: 10px 0;
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .user-info-row:last-child {
+        border-bottom: none;
+      }
+      .user-info-label {
+        font-weight: 600;
+        color: #666;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: block;
+        margin-bottom: 4px;
+      }
+      .user-info-value {
+        color: #1a1a1a;
+        font-size: 15px;
+        display: block;
+      }
+      .timestamp {
+        background-color: #f3f4f6;
+        padding: 12px;
+        border-radius: 6px;
+        margin: 20px 0;
+        text-align: center;
+      }
+      .timestamp-label {
+        font-size: 12px;
+        color: #999;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 4px;
+      }
+      .timestamp-value {
+        font-size: 14px;
+        color: #666;
+        font-weight: 500;
+      }
+      .footer {
+        padding: 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        line-height: 1.6;
+      }
+      .badge {
+        display: inline-block;
+        background-color: #10b981;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        margin-left: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      /* Color coding for difficulty */
+      .difficulty-easy {
+        color: #10b981;
+      }
+      .difficulty-medium {
+        color: #f59e0b;
+      }
+      .difficulty-hard {
+        color: #ef4444;
+      }
+      @media only screen and (max-width: 600px) {
+        .email-container {
+          width: 100% !important;
+        }
+        .feedback-section {
+          padding: 20px;
+          margin: 15px;
+        }
+        .email-content h1 {
+          font-size: 24px;
+        }
+        .difficulty-score {
+          font-size: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <table
+      role="presentation"
+      width="100%"
+      align="center"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+    >
+      <tr>
+        <td align="center" style="padding: 40px 0">
+          <table
+            role="presentation"
+            class="email-container"
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            width="600"
+            bgcolor="#ffffff"
+          >
+            <!-- Logo -->
+            <tr>
+              <td align="center" class="email-logo">
+                <img
+                  src="https://storage.googleapis.com/trainapp-web/logo-dark.png"
+                  alt="Train App Logo"
+                  width="80"
+                  height="80"
+                />
+              </td>
+            </tr>
+
+            <!-- Headline -->
+            <tr>
+              <td align="center" class="email-content">
+                <h1>
+                  New Demo Feedback Received 🎉
+                  <span class="badge">New</span>
+                </h1>
+                <p>
+                  A user has completed the demo and shared their experience!
+                </p>
+              </td>
+            </tr>
+
+            <!-- Feedback Content -->
+            <tr>
+              <td class="email-content">
+                <div class="feedback-section">
+                  <!-- User Information -->
+                  <div class="user-info">
+                    <div class="user-info-row">
+                      <span class="user-info-label">Name</span>
+                      <span class="user-info-value">{{name}}</span>
+                    </div>
+                    <div class="user-info-row">
+                      <span class="user-info-label">Email Address</span>
+                      <span class="user-info-value">{{email}}</span>
+                    </div>
+                  </div>
+
+                  <!-- Difficulty Rating -->
+                  <div class="difficulty-rating">
+                    <span class="difficulty-label"
+                      >Program Creation Difficulty</span
+                    >
+                    <span class="difficulty-score {{difficulty_class}}"
+                      >{{difficulty}}/10</span
+                    >
+                    <div class="difficulty-scale">
+                      <small>1 = Easy · 10 = Hard</small>
+                    </div>
+                    <div>
+                      <span class="difficulty-context">{{difficulty_label}}</span>
+                    </div>
+                  </div>
+
+                  <!-- User Feedback -->
+                  <span class="feedback-label">User Feedback</span>
+                  <div class="feedback-text">{{feedback}}</div>
+
+                  <!-- Timestamp -->
+                  <div class="timestamp">
+                    <div class="timestamp-label">Submitted On</div>
+                    <div class="timestamp-value">{{submission_date}}</div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Call to Action -->
+            <tr>
+              <td align="center" class="email-content">
+                <p style="color: #666; font-size: 14px; margin-top: 10px">
+                  💡 <strong>Next Steps:</strong> Review this feedback to
+                  improve the user experience
+                </p>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td class="footer">
+                <p>
+                  Confidentiality Notice: This email contains confidential user
+                  feedback. Unauthorized use, disclosure, or copying of this
+                  communication is strictly prohibited and may be unlawful.
+                </p>
+                <p>© Train App Inc, 2024. All rights reserved.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+

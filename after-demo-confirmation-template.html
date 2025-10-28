@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thank You for Your Feedback</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        background-color: #f7f7f7;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        height: 100%;
+      }
+      table {
+        height: 100%;
+        min-height: 100vh;
+        background-color: #f7f7f7;
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      .email-container {
+        background-color: #ffffff;
+        margin: 0 auto;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+        border-radius: 8px;
+      }
+      .email-logo {
+        padding: 40px 20px 20px;
+      }
+      .email-content {
+        padding: 20px 40px;
+        text-align: center;
+      }
+      .email-content h1 {
+        color: #1a1a1a;
+        margin: 10px 0 20px;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      .email-content p {
+        color: #666;
+        line-height: 1.8;
+        font-size: 16px;
+        margin: 16px 0;
+      }
+      .highlight-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        padding: 35px 30px;
+        margin: 30px 0;
+        color: white;
+        text-align: center;
+      }
+      .highlight-box h2 {
+        margin: 0 0 15px;
+        font-size: 28px;
+        font-weight: 700;
+      }
+      .highlight-box p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      .emoji-icon {
+        font-size: 56px;
+        margin-bottom: 15px;
+        display: block;
+      }
+      .feature-list {
+        text-align: left;
+        margin: 30px auto;
+        max-width: 450px;
+      }
+      .feature-item {
+        display: flex;
+        align-items: flex-start;
+        margin: 18px 0;
+        padding: 15px;
+        background-color: #f9fafb;
+        border-radius: 8px;
+        border-left: 4px solid #646cff;
+      }
+      .feature-icon {
+        font-size: 24px;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+      .feature-text {
+        flex: 1;
+      }
+      .feature-text strong {
+        color: #1a1a1a;
+        font-size: 15px;
+        display: block;
+        margin-bottom: 4px;
+      }
+      .feature-text span {
+        color: #666;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #646cff 0%, #535bf2 100%);
+        color: white !important;
+        text-decoration: none;
+        padding: 16px 40px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        margin: 25px 0;
+        box-shadow: 0 4px 12px rgba(100, 108, 255, 0.3);
+        transition: all 0.3s ease;
+      }
+      .cta-button:hover {
+        box-shadow: 0 6px 20px rgba(100, 108, 255, 0.4);
+        transform: translateY(-2px);
+      }
+      .divider {
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          #e5e7eb,
+          transparent
+        );
+        margin: 35px 0;
+      }
+      .social-links {
+        margin: 25px 0;
+      }
+      .social-links a {
+        display: inline-block;
+        margin: 0 8px;
+        text-decoration: none;
+        color: #666;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
+      .social-links a:hover {
+        color: #646cff;
+      }
+      .footer {
+        padding: 30px 40px;
+        text-align: center;
+        font-size: 13px;
+        color: #999;
+        line-height: 1.6;
+      }
+      .quote-box {
+        background-color: #f0f9ff;
+        border-left: 4px solid #0ea5e9;
+        padding: 20px 25px;
+        margin: 25px 0;
+        border-radius: 6px;
+        font-style: italic;
+        color: #334155;
+      }
+      .quote-box strong {
+        display: block;
+        margin-top: 10px;
+        font-style: normal;
+        color: #0ea5e9;
+        font-size: 14px;
+      }
+      @media only screen and (max-width: 600px) {
+        .email-container {
+          width: 100% !important;
+          border-radius: 0;
+        }
+        .email-content {
+          padding: 15px 25px;
+        }
+        .email-content h1 {
+          font-size: 26px;
+        }
+        .highlight-box {
+          padding: 25px 20px;
+        }
+        .highlight-box h2 {
+          font-size: 24px;
+        }
+        .emoji-icon {
+          font-size: 48px;
+        }
+        .feature-list {
+          max-width: 100%;
+        }
+        .feature-item {
+          padding: 12px;
+        }
+        .cta-button {
+          padding: 14px 30px;
+          font-size: 15px;
+        }
+        .footer {
+          padding: 25px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <table
+      role="presentation"
+      width="100%"
+      align="center"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+    >
+      <tr>
+        <td align="center" style="padding: 40px 20px">
+          <table
+            role="presentation"
+            class="email-container"
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            width="600"
+            bgcolor="#ffffff"
+          >
+            <!-- Logo -->
+            <tr>
+              <td align="center" class="email-logo">
+                <img
+                  src="https://storage.googleapis.com/trainapp-web/logo-dark.png"
+                  alt="Train App Logo"
+                  width="90"
+                  height="90"
+                />
+              </td>
+            </tr>
+
+            <!-- Main Content -->
+            <tr>
+              <td class="email-content">
+                <h1>Thank You for Your Feedback! 🙏</h1>
+                <p>
+                  Hi <strong>{{name}}</strong>,
+                </p>
+                <p>
+                  We truly appreciate you taking the time to share your
+                  experience with Train. Your insights are invaluable in helping
+                  us create a better product for trainers and their clients.
+                </p>
+              </td>
+            </tr>
+
+            <!-- Highlight Box -->
+            <tr>
+              <td class="email-content">
+                <div class="highlight-box">
+                  <span class="emoji-icon">✨</span>
+                  <h2>Your Voice Matters</h2>
+                  <p>
+                    Every piece of feedback helps us improve the platform and
+                    deliver an exceptional experience. We're reading your
+                    comments carefully and will use them to shape future
+                    updates.
+                  </p>
+                </div>
+              </td>
+            </tr>
+
+            <!-- What's Next Section -->
+            <tr>
+              <td class="email-content">
+                <p
+                  style="
+                    font-size: 18px;
+                    font-weight: 600;
+                    color: #1a1a1a;
+                    margin: 30px 0 20px;
+                  "
+                >
+                  What's Next?
+                </p>
+                <div class="feature-list">
+                  <div class="feature-item">
+                    <span class="feature-icon">🚀</span>
+                    <div class="feature-text">
+                      <strong>Continue Exploring</strong>
+                      <span
+                        >Feel free to keep testing the demo and discover more
+                        features</span
+                      >
+                    </div>
+                  </div>
+                  <div class="feature-item">
+                    <span class="feature-icon">💬</span>
+                    <div class="feature-text">
+                      <strong>We're Here to Help</strong>
+                      <span
+                        >Have questions? Reply to this email - we'd love to
+                        chat!</span
+                      >
+                    </div>
+                  </div>
+                  <div class="feature-item">
+                    <span class="feature-icon">🔔</span>
+                    <div class="feature-text">
+                      <strong>Stay Updated</strong>
+                      <span
+                        >We'll keep you posted on new features and updates based
+                        on your feedback</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Quote Box -->
+            <tr>
+              <td class="email-content">
+                <div class="quote-box">
+                  "Great products are built with great feedback. Thank you for
+                  being part of our journey to revolutionize personal training."
+                  <strong>— The Train Team</strong>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Divider -->
+            <tr>
+              <td class="email-content">
+                <div class="divider"></div>
+              </td>
+            </tr>
+
+            <!-- CTA Section -->
+            <tr>
+              <td class="email-content">
+                <p style="color: #666; margin-bottom: 15px">
+                  Want to share more thoughts or ask questions?
+                </p>
+                <a
+                  href="mailto:trainapp9@gmail.com"
+                  class="cta-button"
+                  style="color: white"
+                >
+                  Get in Touch
+                </a>
+              </td>
+            </tr>
+
+            <!-- Social Links -->
+            <tr>
+              <td class="email-content">
+                <p style="color: #999; font-size: 14px; margin-top: 30px">
+                  Connect with us:
+                </p>
+                <div class="social-links">
+                  <a href="#">LinkedIn</a>
+                  <span style="color: #ddd">|</span>
+                  <a href="#">Twitter</a>
+                  <span style="color: #ddd">|</span>
+                  <a href="#">Instagram</a>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td class="footer">
+                <p style="margin: 0 0 10px">
+                  <strong>Train App</strong><br />
+                  Empowering trainers to deliver exceptional experiences
+                </p>
+                <p style="margin: 10px 0">
+                  This email was sent to {{email}}<br />
+                  You received this because you recently submitted feedback on
+                  our demo
+                </p>
+                <p style="margin-top: 20px; font-size: 12px">
+                  © Train App Inc, 2024. All rights reserved.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
+
