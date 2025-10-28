@@ -210,6 +210,77 @@ app.post("/submit-form", async (req, res) => {
   }
 });
 
+app.post("/after-demo-form", async (req, res) => {
+  const { name, email, difficulty, feedback } = req.body;
+
+  // Validate required fields
+  if (!name || !email || !difficulty || !feedback) {
+    return res.status(400).json({
+      error:
+        "Missing required fields: name, email, difficulty, and feedback are required",
+    });
+  }
+
+  try {
+    // Format current date for the email
+    const submissionDate = new Date().toLocaleString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZoneName: "short",
+    });
+
+    // Prepare email content with form data
+    const htmlToSend = formSubmissionTemplate({
+      name,
+      email,
+      difficulty,
+      feedback,
+      submission_date: submissionDate,
+    });
+
+    const transporter = await createTransporter();
+    const mailOptions = {
+      from: '"Train App Form" <info@trainapp.org>',
+      to: "trainapp9@gmail.com", // Send to the specified email
+      subject: `New After Demo Form Submission from ${name}`,
+      html: htmlToSend,
+      replyTo: email, // Set reply-to as the submitter's email
+    };
+
+    const info = await transporter.sendMail(mailOptions);
+    console.log("After demo form submission email sent: " + info.response);
+
+    // Also send a confirmation email to the submitter
+    const confirmationMailOptions = {
+      from: '"Train App" <info@trainapp.org>',
+      to: email,
+      subject: "Thank you for your interest in Train App",
+      html: template({}), // Using the existing welcome template
+    };
+
+    await transporter.sendMail(confirmationMailOptions);
+
+    res
+      .status(200)
+      .json({
+        message:
+          "After demo form submission received and processed successfully",
+      });
+  } catch (error) {
+    console.error(
+      "Error processing after demo form submission:",
+      error.message
+    );
+    res
+      .status(500)
+      .json({ error: "Error processing after demo form submission" });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
