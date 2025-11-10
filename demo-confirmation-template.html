@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Train App</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333333;
+        background-color: #f7f7f7;
+      }
+      .email-wrapper {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      }
+      .header {
+        text-align: center;
+        padding: 40px 20px 30px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #ffffff;
+      }
+      .logo {
+        max-width: 80px;
+        margin-bottom: 15px;
+      }
+      .header h1 {
+        font-size: 28px;
+        margin: 0 0 10px 0;
+        line-height: 1.3;
+        font-weight: 600;
+      }
+      .header p {
+        font-size: 16px;
+        margin: 0;
+        opacity: 0.95;
+      }
+      .content {
+        padding: 40px 30px;
+      }
+      .greeting {
+        font-size: 18px;
+        color: #333333;
+        margin-bottom: 20px;
+      }
+      .message {
+        font-size: 15px;
+        color: #555555;
+        margin-bottom: 25px;
+        line-height: 1.7;
+      }
+      .demo-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 12px;
+        padding: 30px;
+        text-align: center;
+        margin: 30px 0;
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+      }
+      .demo-box h2 {
+        color: #ffffff;
+        font-size: 22px;
+        margin: 0 0 15px 0;
+        font-weight: 600;
+      }
+      .demo-box p {
+        color: rgba(255, 255, 255, 0.95);
+        font-size: 15px;
+        margin: 0 0 25px 0;
+        line-height: 1.6;
+      }
+      .demo-button {
+        display: inline-block;
+        background-color: #ffffff;
+        color: #667eea;
+        padding: 16px 40px;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+      .demo-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+      }
+      .features {
+        margin: 30px 0;
+      }
+      .feature-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 18px;
+        padding: 15px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        border-left: 3px solid #667eea;
+      }
+      .feature-icon {
+        width: 24px;
+        height: 24px;
+        background-color: #667eea;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-weight: bold;
+        margin-right: 15px;
+        flex-shrink: 0;
+        font-size: 14px;
+      }
+      .feature-text {
+        flex: 1;
+      }
+      .feature-text strong {
+        display: block;
+        color: #333333;
+        margin-bottom: 4px;
+        font-size: 15px;
+      }
+      .feature-text span {
+        color: #666666;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .next-steps {
+        background-color: #f0f4ff;
+        border-radius: 10px;
+        padding: 25px;
+        margin: 30px 0;
+        border: 1px solid #e0e7ff;
+      }
+      .next-steps h3 {
+        color: #333333;
+        font-size: 18px;
+        margin: 0 0 15px 0;
+      }
+      .next-steps ol {
+        margin: 0;
+        padding-left: 20px;
+        color: #555555;
+      }
+      .next-steps li {
+        margin-bottom: 10px;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      .support-box {
+        background-color: #fff8e1;
+        border-left: 4px solid #ffc107;
+        padding: 20px;
+        border-radius: 8px;
+        margin: 25px 0;
+      }
+      .support-box p {
+        margin: 0;
+        color: #666666;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      .support-box a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .footer {
+        text-align: center;
+        padding: 30px;
+        font-size: 13px;
+        color: #999999;
+        border-top: 1px solid #eeeeee;
+        background-color: #fafafa;
+      }
+      .footer p {
+        margin: 5px 0;
+      }
+      .footer a {
+        color: #667eea;
+        text-decoration: none;
+      }
+      .social-links {
+        margin: 20px 0 10px;
+      }
+      .social-links a {
+        display: inline-block;
+        margin: 0 8px;
+        color: #667eea;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      @media only screen and (max-width: 600px) {
+        .email-wrapper {
+          margin: 0;
+          border-radius: 0;
+          box-shadow: none;
+        }
+        .content {
+          padding: 30px 20px;
+        }
+        .header h1 {
+          font-size: 24px;
+        }
+        .demo-box {
+          padding: 25px 20px;
+        }
+        .demo-button {
+          padding: 14px 30px;
+          font-size: 15px;
+        }
+        .feature-item {
+          padding: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-wrapper">
+      <div class="header">
+        <img
+          src="https://storage.googleapis.com/trainapp-web/logo-dark.png"
+          alt="Train App Logo"
+          class="logo"
+        />
+        <h1>Welcome to Train App!</h1>
+        <p>Your fitness journey starts here</p>
+      </div>
+
+      <div class="content">
+        <div class="greeting">Hi {{name}},</div>
+
+        <div class="message">
+          Thank you for your interest in Train App! We're excited to have you
+          explore our platform. We've received your information and can't wait
+          for you to experience how Train App can transform your fitness
+          journey.
+        </div>
+
+        <div class="demo-box">
+          <h2>Start Your Demo Now</h2>
+          <p>
+            Click the button below to access the demo and explore
+            all the powerful features Train App has to offer.
+          </p>
+          <a href="{{demoUrl}}" class="demo-button" target="_blank">
+            Launch Demo
+          </a>
+        </div>
+
+        <div class="features">
+          <h3
+            style="
+              color: #333333;
+              font-size: 20px;
+              margin-bottom: 20px;
+              text-align: center;
+            "
+          >
+            What You Can Do in the Demo
+          </h3>
+
+          <div class="feature-item">
+            <div class="feature-icon">1</div>
+            <div class="feature-text">
+              <strong>Create Custom Programs</strong>
+              <span
+                >Create workout and nutirition programs that you can easily share with others/span
+              >
+            </div>
+          </div>
+
+          <div class="feature-item">
+            <div class="feature-icon">3</div>
+            <div class="feature-text">
+              <strong>Track Progress</strong>
+              <span
+                >Log workouts and monitor performance over time with detailed
+                analytics</span
+              >
+            </div>
+          </div>
+
+        <div class="next-steps">
+          <h3>💡 Getting Started Tips</h3>
+          <ol>
+            <li>Click the demo link above to access the platform</li>
+            <li>Start by creating your first program</li>
+            <li>Add workouts to your program</li>
+            <li>After creating a workout, a form will appear to collect your feedback</li>
+            <li>
+              Share your feedback - we'd love to hear your thoughts!
+            </li>
+          </ol>
+        </div>
+
+        <div class="support-box">
+          <p>
+            <strong>Need help?</strong> If you have any questions or need
+            assistance, feel free to reach out to us at
+            <a href="mailto:trainapp9@gmail.com">trainapp9@gmail.com</a>. We're
+            here to help!
+          </p>
+        </div>
+
+        <div class="message" style="text-align: center; margin-top: 30px">
+          <p style="color: #666666; font-size: 15px">
+            We hope you enjoy exploring Train App! Your feedback will help us
+            build an even better platform.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p style="margin-bottom: 10px">
+          <strong>Train App</strong> - Empowering Fitness Professionals
+        </p>
+        <div class="social-links">
+          <a href="https://trainapp.org">Website</a> •
+          <a href="mailto:trainapp9@gmail.com">Contact</a>
+        </div>
+        <p style="margin-top: 15px; font-size: 12px">
+          Confidentiality Notice: This email and any attachments are
+          confidential and intended solely for the use of the individual to whom
+          it is addressed.
+        </p>
+        <p>&copy; Train App Inc, 2025. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>
+

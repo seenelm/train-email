@@ -78,6 +78,17 @@ const afterDemoConfirmationTemplate = handlebars.compile(
   afterDemoConfirmationSource
 );
 
+// Load and compile the demo confirmation template
+const demoConfirmationFilePath = path.join(
+  __dirname,
+  "demo-confirmation-template.html"
+);
+const demoConfirmationSource = fs.readFileSync(
+  demoConfirmationFilePath,
+  "utf8"
+);
+const demoConfirmationTemplate = handlebars.compile(demoConfirmationSource);
+
 /**
  * @swagger
  * /send-email:
@@ -209,15 +220,23 @@ app.post("/submit-form", async (req, res) => {
     const info = await transporter.sendMail(mailOptions);
     console.log("Form submission email sent: " + info.response);
 
-    // Also send a confirmation email to the submitter
+    // Also send a confirmation email to the submitter with demo link
+    const demoUrl = process.env.DEMO_URL || "https://demo.trainapp.io";
+
+    const confirmationHtml = demoConfirmationTemplate({
+      name,
+      demoUrl,
+    });
+
     const confirmationMailOptions = {
       from: '"Train App" <info@trainapp.org>',
       to: email,
-      subject: "Thank you for your interest in Train App",
-      html: template({}), // Using the existing welcome template
+      subject: "Welcome to Train App - Start Your Demo! 🚀",
+      html: confirmationHtml,
     };
 
     await transporter.sendMail(confirmationMailOptions);
+    console.log("Demo confirmation email sent to: " + email);
 
     res
       .status(200)
